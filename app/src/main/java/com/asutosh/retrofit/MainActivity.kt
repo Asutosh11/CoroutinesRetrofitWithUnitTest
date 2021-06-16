@@ -8,7 +8,7 @@ import android.widget.Toast.LENGTH_LONG
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.asutosh.retrofit.data.api.Status
+import com.asutosh.retrofit.data.api.Resource
 import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.personalDetailsData.observe(this, Observer {
             when(it.status){
-                Status.SUCCESS -> {
+                Resource.Status.SUCCESS -> {
 
                     it.data.let {
                         tv_show_data.text =
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                                     "Skills: " + it?.skills + "\n"
                     }
                 }
-                Status.ERROR -> {
+                Resource.Status.ERROR -> {
                     Toast.makeText(applicationContext,it.message, LENGTH_LONG).show()
                 }
             }

@@ -3,7 +3,6 @@ package `in`.novopay.los
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.asutosh.retrofit.MainRepository
 import com.asutosh.retrofit.data.api.ApiService
-import com.asutosh.retrofit.util.AppConstantsUtil
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.runBlocking
@@ -37,14 +36,14 @@ class GetPersonalDetailsApiTest {
 
         server.start(8000)
 
-        AppConstantsUtil.BASE_URL = server.url("/").toString()
+        var BASE_URL = server.url("/").toString()
 
         val okHttpClient = OkHttpClient
             .Builder()
             .build()
         val service = Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create())
-            .baseUrl(AppConstantsUtil.BASE_URL)
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .build().create(ApiService::class.java)
 
@@ -71,7 +70,7 @@ class GetPersonalDetailsApiTest {
         Assert.assertTrue(resultResponse.equals(expectedresponse))
     }
 
-    @Test
+    /*@Test
     fun testApi404() {
         mockedResponse = MockResponseFileReader("personalDetailsApi/error404.json").content
 
@@ -102,7 +101,7 @@ class GetPersonalDetailsApiTest {
         Assert.assertTrue(response.message().equals("Server Error"))
         Assert.assertTrue(response.code()==500)
     }
-
+*/
     @After
     fun tearDown() {
         server.shutdown()

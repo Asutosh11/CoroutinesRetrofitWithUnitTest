@@ -8,5 +8,4 @@ interface ApiService {
 
     @GET("personalDetails.json")
     suspend fun getPersonalDetails(): Response<PersonalDetailsResponse>
-
 }

@@ -15,4 +15,9 @@ data class Resource<out T>(
             return Resource(Status.ERROR, data, msg)
         }
     }
+
+    enum class Status {
+        SUCCESS,
+        ERROR,
+    }
 }

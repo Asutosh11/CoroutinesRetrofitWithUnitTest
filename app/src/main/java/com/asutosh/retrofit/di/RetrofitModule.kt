@@ -17,8 +17,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RetrofitModule{
 
+    var BASE_URL = "https://raw.githubusercontent.com/Asutosh11/CoroutinesRetrofitWithUnitTest/master/"
+
     @Provides
-    fun provideBaseUrl() = AppConstantsUtil.BASE_URL
+    fun provideBaseUrl() = BASE_URL
 
     @Singleton
     @Provides
